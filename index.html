@@ -33,6 +33,32 @@
 
             </div>
         </div>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger" id="low" type="button">-</button>
+                        </div>
+                        <input type="text" id="value" class="form-control text-center" disabled value="0">
+                        <div class="input-group-append">
+                            <button class="btn btn-success" id="add" type="button">+</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <h1 class="text-center" id="result"></h1>
+                    <br>
+                    <br>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="height: 20px"
+                            id="p_bar"></div>
+                    </div>
+                </div>
+                <div class="col-4"></div>
+
+            </div>
+        </div>
         <div class="row">
             <div class="col-6">
                 <h3 id="ingredient"></h3>

@@ -1,10 +1,61 @@
 $(document).ready(function () {
+    //change function
     $('#recipe').on('change', function () {
         var fruit = $('#recipe').val();
         // console.log(fruit);
         choose(fruit);
     });
+    //add function to calulate number
+    $('#add').on('click', function(){
+        var input = $('#value').val();
+        userInput(input);
+        
+    })
+    //low function to calulate number
+    $('#low').on('click', function(){
+        var input = $('#value').val();
+        lowInput(input);
+    })
+
 });
+
+//function userinput
+function userInput(values){
+    var getValue = parseInt(values) + 1;
+    if(getValue <= 15){
+       $('#value').val(getValue);    
+       mal(getValue);
+    }
+}
+//fucntion lowInput 
+function lowInput(values){
+    var lowValue = parseInt(values) - 1;
+    if(lowValue >= 0  ){
+
+    $('#value').val(lowValue);
+    mal(lowValue);
+    } 
+}
+//mal function to calulate
+function mal(mal) {
+    var mals = mal * 5;
+    output(mals);
+    if (mals == 0) {
+        progres(mals);
+    } else {
+        progres(mals + 25);
+    }
+}
+//function output
+function output(out) {
+    $('#result').html(out);
+}
+//show function progres
+function progres(pro) {
+    $('#p_bar').width(pro + "%");
+    $('#p_bar').html(pro + "%");
+}
+//choose function
 function choose(data) {
     switch (parseInt(data)) {
         case 1:
@@ -54,7 +105,6 @@ function avokado() {
                 })
             })
             $('#table').html(ingredient);
-            // $('#ingredient').hmtl("Ingredient");
         }
     })
 }
