@@ -1,98 +1,101 @@
-// $(document).ready(function(){
-//     var url ="https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
-//     $.getJSON(
-//         url,
-//         function(data){
-//           data.recipes.forEach(iterm=>{
-//               console.log(iterm);
-//           })
-//         }
-//     )
-// })
-
 $(document).ready(function () {
     $('#recipe').on('change', function () {
         var fruit = $('#recipe').val();
+        // console.log(fruit);
         choose(fruit);
     });
-    requestApi();
 });
-var choose = (fruit) => {
-    switch (parseInt(fruit)) {
+function choose(data) {
+    switch (parseInt(data)) {
         case 1:
-            getApple();
+            avokado();
             break;
+
         case 2:
-            getBanana();
-            break;
-        case 3:
-            getCoconut();
+            frence();
             break;
     }
 }
-
-var getBanana = () => {
-    var banana = "banana";
-    printOut(banana);
-}
-var getCoconut = () => {
-    var coconut = "coconut";
-    printOut(coconut);
-}
-var getApple = () => {
-    var apple = "apple";
-    printOut(apple);
-}
-var printOut = (out) => {
-    $('#done').html(out);
-}
-
-//request api
-
-var requestApi = () => {
+//avokadio
+function avokado() {
+    var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
     $.ajax({
         dataType: 'json',
-        url: getUrl(),
-        success: (data) => getRecipe(data),
-        error: () => getError(),
-    })
-}
-//get url
-var getUrl = () => {
-    var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
-    return url;
-}
-//get error
-var getError = () => console.log("Error");
-//get recipe
-var getRecipe = (myData) => {
-    console.log(myData);
-    myData.recipes.forEach(element => {
-        //get recipe:element.name...
-        getIngredient(element.ingredients);
-    })
-}
-//get ingredient
-var getIngredient = (ing) => {
-    ing.forEach(item => {
-        computeHTML(item);
-    })
-}
-//compute to html
-var computeHTML = (display) => {
-    var compute = "";
-    compute += `
-       <tr>
-        <td><img src ="${display.iconUrl}" width ="100px"></td>
-        <td>${display.name}</td>
-        <td>${display.quantity}</td>
-        <td>${display.unit[0]}</td>
-       </tr>
-    `;
-    printOut(compute);
-}
-//print out
+        url: url,
+        success: function (data) {
+            var results = "";
+            data.recipes.forEach(el => {
+                if (el.id == 0) {
 
-printOut = (out) => {
-    $('#ingredient').append(out);
+                    results += `
+                    <div class="col-3"></div>
+                    <div class="col-3"> <h4>${el.name}</h4>  </div>
+                    <div class="col-3">  <img src= "${el.iconUrl}" width="100px"></div>
+                    <div class="col-3"></div>
+                    `;
+                }
+            })
+            $('#card').html(results);
+
+            var ingredient = "";
+            data.recipes.forEach(ing => {
+                ing.ingredients.forEach(item => {
+                    if (ing.id == 0) {
+                        ingredient += `
+                       
+                        <tr>
+                        <td><img src="${item.iconUrl}" width="50px"></td>
+                        <td>${item.quantity}</td>
+                        <td>${item.unit[0].toLowerCase()}</td>
+                        <td>${item.name}</td>
+                        </tr>
+                     `;
+                    }
+                })
+            })
+            $('#table').html(ingredient);
+            // $('#ingredient').hmtl("Ingredient");
+        }
+    })
+}
+// frence crip
+function frence() {
+    var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
+    $.ajax({
+        dataType: 'json',
+        url: url,
+        success: function (data) {
+            var result = "";
+            data.recipes.forEach(el => {
+                if (el.id == 1) {
+
+                    result += `
+                        
+                        <div class="col-3"></div>
+                        <div class="col-3"> <h4>${el.name}</h4>  </div>
+                        <div class="col-3">  <img src= "${el.iconUrl}" width="100px"></div>
+                        <div class="col-3"></div>
+                    `;
+                }
+            })
+            $('#card').html(result);
+
+            var ingredient = "";
+            data.recipes.forEach(ing => {
+                ing.ingredients.forEach(item => {
+                    if (ing.id == 1) {
+                        ingredient += `
+                        <tr>
+                        <td><img src="${item.iconUrl}" width="50px"></td>
+                        <td>${item.quantity}</td>
+                        <td>${item.unit[0].toLowerCase()}</td>
+                        <td>${item.name}</td>
+                        </tr>
+                     `;
+                    }
+                })
+            })
+            $('#table').html(ingredient);
+        }
+    })
 }
