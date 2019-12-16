@@ -9,6 +9,17 @@ $(document).ready(function () {
         console.log(recipeId);
         getRecipe(recipeId);
     })
+///add 
+    $('#add').on('click', function () {
+        var input = $('#value').val();
+        userInput(input);
+
+    })
+//low
+    $('#low').on('click', function () {
+        var input = $('#value').val();
+        lowInput(input);
+    })
 });
 
 function requerstApi() {
@@ -76,14 +87,14 @@ function ingredients(ingredients) {
 }
 
 function instructions(step){
-    var getStep="";
     $("#Intorduction").html("Instructions");
+    var getStep="";
     var steps=step.split("<step>")
     for(let i=1; i<steps.length; i++){
         getStep +=`
             <div class="col-4"></div>
             <div class="col-6">
-            Step ${i}
+            <h5>Step ${i}</h5>
             <p>${steps[i]}</p>
             </div>
        
@@ -92,3 +103,21 @@ function instructions(step){
     }
     $("#step").html(getStep);
 }
+///userInput
+function userInput(values) {
+    var getValue = parseInt(values) + 1;
+    if (getValue <= 15) {
+        $('#value').val(getValue);
+        mal(getValue);
+    }
+}
+///lowInput
+function lowInput(values) {
+    var lowValue = parseInt(values) - 1;
+    if (lowValue >= 0) {
+
+        $('#value').val(lowValue);
+        mal(lowValue);
+    }
+}
+
