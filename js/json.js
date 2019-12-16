@@ -2,6 +2,7 @@ function getUrl() {
     var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
     return url;
 }
+
 $(document).ready(function () {
     requerstApi();
     $('#select').on('change', () => {
@@ -10,16 +11,21 @@ $(document).ready(function () {
         getRecipe(recipeId);
     })
 ///add 
+    $('#input').hide();
     $('#add').on('click', function () {
         var input = $('#value').val();
         userInput(input);
+        $('#input').show();
 
     })
 //low
+    $('#output').hide();
     $('#low').on('click', function () {
         var input = $('#value').val();
         lowInput(input);
+        $('#output').show();
     })
+
 });
 
 function requerstApi() {
@@ -49,6 +55,7 @@ function getRecipe(id) {
             
             eachRecipe(item.name, item.iconUrl);
             ingredients(item.ingredients);
+            eachGuest(item.nbGuests);
             instructions(item.instructions);
            
         }
@@ -67,15 +74,25 @@ function eachRecipe(name, img) {
     $('#recipe-results').html(result);
 }
 
+$('#show').hide();
+function eachGuest(guest) {
+    var result = "";
+    result += `
+        <input type="text" id="value" class="form-control text-center" disabled value="${guest}">
+    `;
+    $('#values').html(result);
+    $('#show').show();
+}
+
+
 function ingredients(ingredients) {
     var result_ingredients = "";
-    $('#h5').html("Ingredients");
     ingredients.forEach(element => {
         result_ingredients += `
        
         <tr>
         <td><img src ="${element.iconUrl}" width ="40"></td>
-        <td>${element.quantity}</td>
+        <td id ="quan">${element.quantity}</td>
         <td>${element.unit[0]}</td>
         <td>${element.name}</td>
         </tr>
@@ -87,7 +104,6 @@ function ingredients(ingredients) {
 }
 
 function instructions(step){
-    $("#Intorduction").html("Instructions");
     var getStep="";
     var steps=step.split("<step>")
     for(let i=1; i<steps.length; i++){
@@ -103,6 +119,7 @@ function instructions(step){
     }
     $("#step").html(getStep);
 }
+
 ///userInput
 function userInput(values) {
     var getValue = parseInt(values) + 1;
@@ -111,6 +128,7 @@ function userInput(values) {
         mal(getValue);
     }
 }
+
 ///lowInput
 function lowInput(values) {
     var lowValue = parseInt(values) - 1;
@@ -120,4 +138,5 @@ function lowInput(values) {
         mal(lowValue);
     }
 }
+
 

@@ -26,30 +26,38 @@
             </div>
             <div class="col-4"></div>
         </div>
+    </div>
 
-
-
+    <div class="container ">
+        <!-- row for recipe -->
         <div class="row" id="recipe-results">
 
         </div>
+    </div>
 
-        <div class="row mt-5">
-            <div class="col-4"></div>
+    <div class="container ">
+        <div class="row " id="show">
+            <div class="col-2"></div>
             <div class="col-4">
-                <div class="input-group mb-3" id="hide">
+                <h4 class="text-center">Number of Person</h4>
+            </div>
+            <div class="col-4" id="button">
+                <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <button class="btn btn-danger" id="low" type="button">-</button>
                     </div>
-                    <input type="text" id="value" class="form-control text-center" disabled value="0">
+                    <div id="values"></div>
+                    <!-- <input type="text" id="value" class="form-control text-center" disabled value="0"> -->
                     <div class="input-group-append">
                         <button class="btn btn-success" id="add" type="button">+</button>
                     </div>
                 </div>
-
             </div>
-            <div class="col-4"></div>
+            <div class="col-2"></div>
         </div>
+    </div>
 
+    <div class="container ">
         <div class="row">
             <div class="col-6">
                 <h5 id="h5"></h5>
@@ -63,6 +71,7 @@
             </div>
         </div>
     </div>
+</div>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
