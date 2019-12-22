@@ -7,7 +7,6 @@ $(document).ready(function () {
     requerstApi();
     $('#select').on('change', () => {
         var recipeId = $('#select').val();
-        console.log(recipeId);
         getRecipe(recipeId);
     })
 
@@ -24,44 +23,49 @@ $(document).ready(function () {
     })
 });
 
-        //requesApi for url
-    function requerstApi() {
-        $.ajax({
-            dataType: 'json',
-            url: getUrl(),
-            success: (data) => chooseRecipe(data.recipes),
-            error: () => console.log('error'),
-        })
-    }
-        //create array allData for using
-    var allData = [];
-        //fucntion chooseRecipe 
-    function chooseRecipe(recipe) {
-        allData = recipe;
-        var option = "";
-        recipe.forEach(element => {
-            option += `
+//requesApi for url
+function requerstApi() {
+    $.ajax({
+        dataType: 'json',
+        url: getUrl(),
+        success: (data) => chooseRecipe(data.recipes),
+        error: () => console.log('error'),
+    })
+}
+//create array allData for using
+var allData = [];
+//fucntion chooseRecipe 
+function chooseRecipe(recipe) {
+    allData = recipe;
+    var option = "";
+    recipe.forEach(element => {
+        option += `
                 <option value="${element.id}">${element.name}</option>
             `;
-        });
-        $('#select').append(option);
-    }
-    //function getRecipe
-    function getRecipe(id) {
-        allData.forEach(item => {
-            if (item.id == id) {
-                eachRecipe(item.name, item.iconUrl);
-                ingredients(item.ingredients);
-                eachGuest(item.nbGuests);
-                instructions(item.instructions);
+    });
+    $('#select').append(option);
+}
+//function getRecipe
+var oldgest;
+var newQualitie = [];
 
-            }
-        })
-    }
-    //
-    function eachRecipe(name, img) {
-        var result = "";
-        result += `
+function getRecipe(id) {
+    allData.forEach(item => {
+        if (item.id == id) {
+            eachRecipe(item.name, item.iconUrl);
+            ingredients(item.ingredients);
+            eachGuest(item.nbGuests);
+            instructions(item.instructions);
+            oldgest = item.nbGuests;
+            newQualitie = item.ingredients;
+
+        }
+    })
+}
+//
+function eachRecipe(name, img) {
+    var result = "";
+    result += `
         <div class ="col-4"></div>
         <div class ="col-4">
             <h1>${name}</h1> 
@@ -70,27 +74,27 @@ $(document).ready(function () {
         <img src ="${img}" width ="100">
         </div>
         `;
-        $('#recipe-results').html(result);
-    }
+    $('#recipe-results').html(result);
+}
 
-        //hide before see 
-    $('#show').hide();
-    //function eachGuest to get data from api
-    function eachGuest(guest) {
-        var result = "";
-        result += `
+//hide before see 
+$('#show').hide();
+//function eachGuest to get data from api
+function eachGuest(guest) {
+    var result = "";
+    result += `
             <input type="text" id="value" class="form-control text-center" disabled value="${guest}">
         `;
-        $('#values').html(result);
-        //show after
-        $('#show').show();
-    }
+    $('#values').html(result);
+    //show after
+    $('#show').show();
+}
 
-    //function ingredients to get data from ingredients
-    function ingredients(ingredients) {
-        var result_ingredients = "";
-        ingredients.forEach(element => {
-            result_ingredients += `
+//function ingredients to get data from ingredients
+function ingredients(ingredients) {
+    var result_ingredients = "";
+    ingredients.forEach(element => {
+        result_ingredients += `
             <tr>
             <td><img src ="${element.iconUrl}" width ="40"></td>
             <td id ="quan">${element.quantity}</td>
@@ -98,15 +102,15 @@ $(document).ready(function () {
             <td>${element.name}</td>
             </tr>
             `;
-        })
-        $('#ingradient').html(result_ingredients);
-    }
-    //function instructions for loop step to output
-    function instructions(step) {
-        var getStep = "";
-        var steps = step.split("<step>")
-        for (let i = 1; i < steps.length; i++) {
-            getStep += `
+    })
+    $('#ingradient').html(result_ingredients);
+}
+//function instructions for loop step to output
+function instructions(step) {
+    var getStep = "";
+    var steps = step.split("<step>")
+    for (let i = 1; i < steps.length; i++) {
+        getStep += `
                 <div class="col-4"></div>
                 <div class="col-6">
                 <h5>Step ${i}</h5>
@@ -114,27 +118,49 @@ $(document).ready(function () {
                 </div>
                 <div class="col-4"></div>
             `;
-        }
-        $("#step").html(getStep);
     }
+    $("#step").html(getStep);
+}
 
-    ///userInput to add number
-    function userInput(values) {
-        var getValue = parseInt(values) + 1;
-        if (getValue <= 15) {
-            $('#value').val(getValue);
-            mal(getValue);
-        }
+///userInput to add number
+function userInput(values) {
+    var getValue = parseInt(values) + 1;
+    if (getValue <= 15) {
+        $('#value').val(getValue);
+        // mal(getValue);
+        newGuest($('#value').val());
     }
+}
 
-    ///lowInput to minus number
-    function lowInput(values) {
-        var lowValue = parseInt(values) - 1;
-        if (lowValue >= 0) {
-
-            $('#value').val(lowValue);
-            mal(lowValue);
-        }
+///lowInput to minus number
+function lowInput(values) {
+    var lowValue = parseInt(values) - 1;
+    if (lowValue >= 1) {
+        $('#value').val(lowValue);
+        // mal(lowValue);
+        newGuest($('#value').val());
     }
+}
 
+function newGuest(getgest) {
+    var result_ingredients = "";
+    newQualitie.forEach(element => {
+        // console.log(element.quantity);
+        const{name,quantity,unit,iconUrl} = element;
+        result_ingredients += `
+            <tr>
+            <td><img src ="${iconUrl}" width ="40"></td>
+            <td id ="quan">${quantity/oldgest*getgest}</td>
+            <td>${unit[0]}</td>
+            <td>${name}</td>
+            </tr>
+            `;
+        // console.log(quantity/oldgest*getgest);
+    });
+    $('#ingradient').html(result_ingredients);
+
+    // console.log(oldgest);
+    // console.log(getgest);
+
+}
 
