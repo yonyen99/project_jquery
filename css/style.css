@@ -8,3 +8,15 @@
 #food4{
     width: 1366px;
 }
+#line {
+
+    border-left: 2px solid;
+    height: 300px;
+    position: absolute;
+    left: 40%;
+    color: #b605b1;
+    margin-left: 100px;
+}
+#introduct{
+    margin-left: 100px;
+}

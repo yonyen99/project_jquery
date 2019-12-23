@@ -5,16 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- link materialize -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
     <title>Project jQuery</title>
     <style>
@@ -23,6 +15,7 @@
 </head>
 
 <body>
+    <!-- picture of navagaion -->
     <div class="container-fluid">
         <div class="row">
             <div class="img">
@@ -37,36 +30,36 @@
 
                 <!-- Indicators -->
                 <ul class="carousel-indicators">
-                  <li data-target="#demo" data-slide-to="0" class="active"></li>
-                  <li data-target="#demo" data-slide-to="1"></li>
-                  <li data-target="#demo" data-slide-to="2"></li>
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                    <li data-target="#demo" data-slide-to="2"></li>
                 </ul>
-              
+
                 <!-- The slideshow -->
                 <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="img/food1.png" id="food1" >
-                  </div>
-                  <div class="carousel-item">
-                    <img src="img/food3.png" id="food3">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="img/food4.png" id="food4">
-                  </div>
+                    <div class="carousel-item active">
+                        <img src="img/food1.png" id="food1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/food3.png" id="food3">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/food4.png" id="food4">
+                    </div>
                 </div>
-              
+
                 <!-- Left and right controls -->
                 <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                  <span class="carousel-control-prev-icon"></span>
+                    <span class="carousel-control-prev-icon"></span>
                 </a>
                 <a class="carousel-control-next" href="#demo" data-slide="next">
-                  <span class="carousel-control-next-icon"></span>
+                    <span class="carousel-control-next-icon"></span>
                 </a>
-              
-              </div>
+
+            </div>
         </div>
     </div>
-    
+
     <!-- for select -->
     <div class="container " id="forselect">
         <div class="row">
@@ -100,7 +93,6 @@
                         <button class="btn btn-danger" id="low" type="button">-</button>
                     </div>
                     <div id="values"></div>
-                    <!-- <input type="text" id="value" class="form-control text-center" disabled value="0"> -->
                     <div class="input-group-append">
                         <button class="btn btn-success" id="add" type="button">+</button>
                     </div>
@@ -110,23 +102,30 @@
         </div>
     </div>
 
-    <!-- ingradients -->
+    <!-- ingradients  and step and line-->
     <div class="container ">
         <div class="row">
-            <div class="col-6">
+            <!-- ingradient -->
+            <div class="col-5">
+                <h4 id="ingradienttitle"></h4>
                 <table class="table" id="ingradient">
 
                 </table>
             </div>
-
-            <div class="col-6">
+            <!-- line -->
+            <div class="col-2" id="line"></div>
+            <!-- step for introduction -->
+            <div class="col-5" id="introduct">
+                <h4 id="introduction"></h4>
                 <p id="step"></p>
             </div>
         </div>
     </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="js/json.js"></script>
 </body>
 

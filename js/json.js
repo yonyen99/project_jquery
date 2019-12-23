@@ -1,29 +1,29 @@
+//function to get url from api
 function getUrl() {
     var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
     return url;
 }
-
+//start jquery with $(document) function
 $(document).ready(function () {
+    $('#line').hide(); // hide line
     requerstApi();
     $('#select').on('change', () => {
         var recipeId = $('#select').val();
         getRecipe(recipeId);
+        $('#line').show();
     })
-
     //add to number to click function
     $('#add').on('click', function () {
         var input = $('#value').val();
         userInput(input);
     })
-
     //low to minus function
     $('#low').on('click', function () {
         var input = $('#value').val();
         lowInput(input);
     })
 });
-
-//requesApi for url
+//requetsApi for url
 function requerstApi() {
     $.ajax({
         dataType: 'json',
@@ -32,7 +32,7 @@ function requerstApi() {
         error: () => console.log('error'),
     })
 }
-//create array allData for using
+//create array allData for using to get element of recipe
 var allData = [];
 //fucntion chooseRecipe 
 function chooseRecipe(recipe) {
@@ -45,10 +45,11 @@ function chooseRecipe(recipe) {
     });
     $('#select').append(option);
 }
-//function getRecipe
+//variable oldgest to 
 var oldgest;
+//variable newQualitie to 
 var newQualitie = [];
-
+//function getRecipe
 function getRecipe(id) {
     allData.forEach(item => {
         if (item.id == id) {
@@ -58,7 +59,6 @@ function getRecipe(id) {
             instructions(item.instructions);
             oldgest = item.nbGuests;
             newQualitie = item.ingredients;
-
         }
     })
 }
@@ -76,7 +76,6 @@ function eachRecipe(name, img) {
         `;
     $('#recipe-results').html(result);
 }
-
 //hide before see 
 $('#show').hide();
 //function eachGuest to get data from api
@@ -92,6 +91,7 @@ function eachGuest(guest) {
 
 //function ingredients to get data from ingredients
 function ingredients(ingredients) {
+    $('#ingradienttitle').html('Ingredients');
     var result_ingredients = "";
     ingredients.forEach(element => {
         result_ingredients += `
@@ -107,6 +107,7 @@ function ingredients(ingredients) {
 }
 //function instructions for loop step to output
 function instructions(step) {
+    $('#introduction').html('Instructions');
     var getStep = "";
     var steps = step.split("<step>")
     for (let i = 1; i < steps.length; i++) {
@@ -121,7 +122,6 @@ function instructions(step) {
     }
     $("#step").html(getStep);
 }
-
 ///userInput to add number
 function userInput(values) {
     var getValue = parseInt(values) + 1;
@@ -131,7 +131,6 @@ function userInput(values) {
         newGuest($('#value').val());
     }
 }
-
 ///lowInput to minus number
 function lowInput(values) {
     var lowValue = parseInt(values) - 1;
@@ -141,26 +140,19 @@ function lowInput(values) {
         newGuest($('#value').val());
     }
 }
-
+//newGuest function to calulate number
 function newGuest(getgest) {
     var result_ingredients = "";
     newQualitie.forEach(element => {
-        // console.log(element.quantity);
-        const{name,quantity,unit,iconUrl} = element;
+        const { name, quantity, unit, iconUrl } = element;
         result_ingredients += `
             <tr>
             <td><img src ="${iconUrl}" width ="40"></td>
-            <td id ="quan">${quantity/oldgest*getgest}</td>
+            <td id ="quan">${quantity / oldgest * getgest}</td>
             <td>${unit[0]}</td>
             <td>${name}</td>
             </tr>
             `;
-        // console.log(quantity/oldgest*getgest);
     });
     $('#ingradient').html(result_ingredients);
-
-    // console.log(oldgest);
-    // console.log(getgest);
-
 }
-
