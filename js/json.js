@@ -62,13 +62,13 @@ function getRecipe(id) {
         }
     })
 }
-//
+//function to get name and iconUrl from api
 function eachRecipe(name, img) {
     var result = "";
     result += `
         <div class ="col-4"></div>
         <div class ="col-4">
-            <h1>${name}</h1> 
+            <h1 class ="text-info">${name}</h1> 
         </div>
         <div class ="col-4">
         <img src ="${img}" width ="100">
@@ -88,7 +88,6 @@ function eachGuest(guest) {
     //show after
     $('#show').show();
 }
-
 //function ingredients to get data from ingredients
 function ingredients(ingredients) {
     $('#ingradienttitle').html('Ingredients');
@@ -98,8 +97,8 @@ function ingredients(ingredients) {
             <tr>
             <td><img src ="${element.iconUrl}" width ="40"></td>
             <td id ="quan">${element.quantity}</td>
-            <td>${element.unit[0]}</td>
-            <td>${element.name}</td>
+            <td class ="text-success">${element.unit[0]}</td>
+            <td  class ="text-warning">${element.name}</td>
             </tr>
             `;
     })
@@ -114,8 +113,8 @@ function instructions(step) {
         getStep += `
                 <div class="col-4"></div>
                 <div class="col-6">
-                <h5>Step ${i}</h5>
-                <p>${steps[i]}</p>
+                <h5  class ="text-success">Step ${i}</h5>
+                <p class ="text-info">${steps[i]}</p>
                 </div>
                 <div class="col-4"></div>
             `;
@@ -148,9 +147,9 @@ function newGuest(getgest) {
         result_ingredients += `
             <tr>
             <td><img src ="${iconUrl}" width ="40"></td>
-            <td id ="quan">${quantity / oldgest * getgest}</td>
-            <td>${unit[0]}</td>
-            <td>${name}</td>
+            <td id ="quan"  class ="text-info">${quantity / oldgest * getgest}</td>
+            <td  class ="text-warning">${unit[0]}</td>
+            <td  class ="text-success">${name}</td>
             </tr>
             `;
     });

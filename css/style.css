@@ -1,12 +1,6 @@
     
-#food3{
-    width: 1366px;
-}
-#food1{
-    width: 1366px;
-}
-#food4{
-    width: 1366px;
+#food3,#food1,#food4{
+    width: 1350px;
 }
 #line {
 
@@ -14,9 +8,12 @@
     height: 300px;
     position: absolute;
     left: 40%;
-    color: #b605b1;
+    color: #f3695d;
     margin-left: 100px;
 }
 #introduct{
     margin-left: 100px;
+}
+#jumbotron{
+    margin-top: 100px;
 }
