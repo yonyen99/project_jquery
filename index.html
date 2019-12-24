@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster+Two&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inria+Serif&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <title>Project jQuery</title>
     <style>
@@ -64,7 +67,7 @@
             <div class="col-4"></div>
             <div class="col-4">
                 <select id="select" class="form-control">
-                    <option disabled selected>choose recipes...</option>
+                    <option disabled selected id = 'selectrecipe'>choose recipes...</option>
                 </select>
             </div>
             <div class="col-4"></div>
@@ -99,14 +102,14 @@
     <div class="container ">
         <div class="row">
             <!-- ingradient -->
-            <div class="col-5">
+            <div class="col-sm-5">
                 <h4 id="ingradienttitle"></h4>
                 <table class="table" id="ingradient"></table>
             </div>
             <!-- line -->
-            <div class="col-2" id="line"></div>
+            <div class="col-sm-2" id="line"></div>
             <!-- step for introduction -->
-            <div class="col-5" id="introduct">
+            <div class="col-sm-5" id="introduct">
                 <h4 id="introduction"></h4>
                 <p id="step"></p>
             </div>

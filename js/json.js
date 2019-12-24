@@ -1,11 +1,12 @@
-//function to get url from api
+//function getUrl to get url from api
 function getUrl() {
     var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
     return url;
 }
 //start jquery with $(document) function
 $(document).ready(function () {
-    $('#line').hide(); // hide line
+    // hide line 
+    $('#line').hide();
     requerstApi();
     $('#select').on('change', () => {
         var recipeId = $('#select').val();
@@ -34,7 +35,7 @@ function requerstApi() {
 }
 //create array allData for using to get element of recipe
 var allData = [];
-//fucntion chooseRecipe 
+//fucntion chooseRecipe to get value to select food
 function chooseRecipe(recipe) {
     allData = recipe;
     var option = "";
@@ -45,11 +46,11 @@ function chooseRecipe(recipe) {
     });
     $('#select').append(option);
 }
-//variable oldgest to 
+//variable oldgest to get nbGuests from api
 var oldgest;
-//variable newQualitie to 
+//variable newQualitie to get ingredients from api
 var newQualitie = [];
-//function getRecipe
+//function getRecipe to compare id 
 function getRecipe(id) {
     allData.forEach(item => {
         if (item.id == id) {
@@ -66,17 +67,19 @@ function getRecipe(id) {
 function eachRecipe(name, img) {
     var result = "";
     result += `
-        <div class ="col-4"></div>
-        <div class ="col-4">
-            <h1 class ="text-info">${name}</h1> 
+        <div class ="col-3"></div>
+        <div class ="col-3">
+            <h1 class ="text-info" id ='nameoftitle'>${name}</h1> 
         </div>
-        <div class ="col-4">
-        <img src ="${img}" width ="100">
+        <div class ="col-3">
+        <img src ="${img}" width ="150"  class="rounded-circle">
         </div>
+        <div class ="col-3"></div>
         `;
+    //output name and iconUrl 
     $('#recipe-results').html(result);
 }
-//hide before see 
+//hide before ckick (calulate of number)
 $('#show').hide();
 //function eachGuest to get data from api
 function eachGuest(guest) {
@@ -85,7 +88,7 @@ function eachGuest(guest) {
             <input type="text" id="value" class="form-control text-center" disabled value="${guest}">
         `;
     $('#values').html(result);
-    //show after
+    //show after click
     $('#show').show();
 }
 //function ingredients to get data from ingredients
@@ -96,9 +99,9 @@ function ingredients(ingredients) {
         result_ingredients += `
             <tr>
             <td><img src ="${element.iconUrl}" width ="40"></td>
-            <td id ="quan">${element.quantity}</td>
-            <td class ="text-success">${element.unit[0]}</td>
-            <td  class ="text-warning">${element.name}</td>
+            <td id ="quan" id ="quantities">${element.quantity}</td>
+            <td class ="text-success" id ="units">${element.unit[0]}</td>
+            <td  class ="text-warning" id ="names">${element.name}</td>
             </tr>
             `;
     })
@@ -113,29 +116,27 @@ function instructions(step) {
         getStep += `
                 <div class="col-4"></div>
                 <div class="col-6">
-                <h5  class ="text-success">Step ${i}</h5>
-                <p class ="text-info">${steps[i]}</p>
+                <h5  class ="text-success" id ="Step">Step ${i}</h5>
+                <p class ="text-info" id ="steps">${steps[i]}</p>
                 </div>
                 <div class="col-4"></div>
             `;
     }
     $("#step").html(getStep);
 }
-///userInput to add number
+///userInput to add number when click button add
 function userInput(values) {
     var getValue = parseInt(values) + 1;
     if (getValue <= 15) {
         $('#value').val(getValue);
-        // mal(getValue);
         newGuest($('#value').val());
     }
 }
-///lowInput to minus number
+///lowInput to minus number when click button munus
 function lowInput(values) {
     var lowValue = parseInt(values) - 1;
     if (lowValue >= 1) {
         $('#value').val(lowValue);
-        // mal(lowValue);
         newGuest($('#value').val());
     }
 }
@@ -147,9 +148,9 @@ function newGuest(getgest) {
         result_ingredients += `
             <tr>
             <td><img src ="${iconUrl}" width ="40"></td>
-            <td id ="quan"  class ="text-info">${quantity / oldgest * getgest}</td>
-            <td  class ="text-warning">${unit[0]}</td>
-            <td  class ="text-success">${name}</td>
+            <td id ="quan"  class ="text-info" id ="quanlities">${quantity / oldgest * getgest}</td>
+            <td  class ="text-warning" id ="unit">${unit[0]}</td>
+            <td  class ="text-success" id ="name">${name}</td>
             </tr>
             `;
     });

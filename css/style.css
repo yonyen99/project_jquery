@@ -1,7 +1,9 @@
-    
+
+/* to set width picture of carosuel     */
 #food3,#food1,#food4{
     width: 1350px;
 }
+/* to set height and color of line  */
 #line {
 
     border-left: 2px solid;
@@ -11,9 +13,28 @@
     color: #f3695d;
     margin-left: 100px;
 }
+/* margin left introduct */
 #introduct{
     margin-left: 100px;
 }
 #jumbotron{
     margin-top: 100px;
+}
+#steps,#quanlities,#unit,#name{
+    /* font-family: 'Inria Serif', serif; */
+    font-family: 'Satisfy', cursive;
+}
+#nameoftitle{
+    font-family: 'Ma Shan Zheng', cursive;
+}
+#Step{
+    font-family: 'Ma Shan Zheng', cursive;
+}
+h4{
+    font-family: 'Lobster Two', cursive;
+    color: red;
+}
+#selectrecipe,#quantities,#units,#names{
+    font-family: 'Lobster Two', cursive;
+
 }
