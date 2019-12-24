@@ -5,17 +5,17 @@
 }
 /* to set height and color of line  */
 #line {
-
     border-left: 2px solid;
     height: 300px;
     position: absolute;
     left: 40%;
     color: #f3695d;
-    margin-left: 100px;
+    margin-left: 80px;
+   
 }
 /* margin left introduct */
 #introduct{
-    margin-left: 100px;
+    margin-left: 180px;
 }
 #jumbotron{
     margin-top: 100px;
@@ -24,16 +24,19 @@
     /* font-family: 'Inria Serif', serif; */
     font-family: 'Satisfy', cursive;
 }
+/* name of title font family */
 #nameoftitle{
     font-family: 'Ma Shan Zheng', cursive;
 }
 #Step{
     font-family: 'Ma Shan Zheng', cursive;
 }
+/* h4 to set font family */
 h4{
     font-family: 'Lobster Two', cursive;
     color: red;
 }
+/* font of quanlitiew unit name */
 #selectrecipe,#quantities,#units,#names{
     font-family: 'Lobster Two', cursive;
 

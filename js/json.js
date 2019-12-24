@@ -7,11 +7,13 @@ function getUrl() {
 $(document).ready(function () {
     // hide line 
     $('#line').hide();
+    $('#spinner').hide();
     requerstApi();
     $('#select').on('change', () => {
         var recipeId = $('#select').val();
         getRecipe(recipeId);
         $('#line').show();
+        $('#spinner').show();
     })
     //add to number to click function
     $('#add').on('click', function () {
